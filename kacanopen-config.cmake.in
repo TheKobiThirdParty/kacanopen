@@ -1,0 +1,16 @@
+# - Config file for the kacanopen package
+# It defines the following variables
+#  kacanopen_INCLUDE_DIRS - include directories for kacanopen
+#  kacanopen_LIBRARIES    - libraries to link against
+ 
+# Compute paths
+get_filename_component(kacanopen_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+set(kacanopen_INCLUDE_DIRS "@CMAKE_INSTALL_PREFIX@/include/kacanopen")
+
+# Our library dependencies (contains definitions for IMPORTED targets)
+if(NOT TARGET kacanopen AND NOT kacanopen_BINARY_DIR)
+  include("${kacanopen_CMAKE_DIR}/kacanopenTargets.cmake")
+endif()
+ 
+# These are IMPORTED targets created by kacanopenTargets.cmake
+set(kacanopen_LIBRARIES @kacanopen_LIBRARIES@)

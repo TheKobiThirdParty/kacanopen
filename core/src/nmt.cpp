@@ -70,7 +70,7 @@ void NMT::discover_nodes() {
 	for (size_t node_id = 1; node_id < 239; ++node_id) {
 		// Protocol node guarding. See CiA 301. All devices will answer with their state via NMT.
 		uint16_t cob_id = 0x700+node_id;
-		const Message message = { cob_id, true, 0, {0,0,0,0,0,0,0,0} };
+		const Message message = { cob_id, false, 0, {} };
 		m_core.send(message);
 		std::this_thread::sleep_for(pause);
 	}
